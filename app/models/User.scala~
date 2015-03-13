@@ -1,0 +1,19 @@
+
+
+package models
+
+import org.squeryl.{Schema, KeyedEntity}
+
+class User(val id: Long,
+	   val email: String,
+	   val password: String,
+	   val fullname: String,
+	   val isadmin: Boolean) extends KeyedEntity[Long] {
+
+  def this() = this(0L, "", "", "", false)
+
+}
+
+
+
+

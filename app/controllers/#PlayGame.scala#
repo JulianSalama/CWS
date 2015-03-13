@@ -1,0 +1,12 @@
+package controllers
+
+import play.api._
+import play.api.mvc._
+
+object PlayGame extends Controller {
+
+  def receiveGame(xmlGame: XMLTag) = Action {
+    
+  }
+
+}

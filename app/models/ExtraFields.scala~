@@ -1,0 +1,13 @@
+package models
+
+import java.sql.Timestamp
+import org.squeryl.annotations.Column
+import models.lib.Util
+
+trait CreatedAtField {
+  var createdAt: Timestamp = Util.now
+}
+
+trait UpdatedAtField {
+  var updatedAt: Timestamp = Util.now
+}

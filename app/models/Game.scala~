@@ -1,0 +1,13 @@
+
+package models
+
+import org.squeryl.PrimitiveTypeMode._
+
+class Game {
+  
+}
+
+
+object Game {
+  
+}

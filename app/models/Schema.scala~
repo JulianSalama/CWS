@@ -1,0 +1,13 @@
+import org.squeryl.PrimitiveTypeMode._
+import org.squeryl.Schema
+import org.squeryl.annotations.Column
+import java.util.Date
+import java.sql.Timestamp
+
+
+package models
+
+object Library extends Schema {
+
+
+}

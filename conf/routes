@@ -1,0 +1,19 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET     /                           controllers.Application.index
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+# iphone client
+POST   	/editAlbum			controllers.Albums.editAlbum
+POST    /getAlbums			controllers.Albums.getAlbums
+POST	/getFriendIDs			controllers.Users.getFriendIDs
+POST	/uploadPhoto/:id			controllers.Photos.doUpload(id: Long)
+POST 	/getPhoto/:id			controllers.Photos.getPhoto(id: Long)
+GET 	/g_getPhoto/:id			controllers.Photos.getPhoto2(id: Long, fbtoken: Option[String] ?= None, fbid: Option[String] ?= None)
+GET 	/t_getPhoto/:id			controllers.Photos.getThumbnail(id: Long, fbtoken: Option[String] ?= None, fbid: Option[String] ?= None)
+POST 	/deletePhotos			controllers.Photos.deletePhotos
+	

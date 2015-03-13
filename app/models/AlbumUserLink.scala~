@@ -1,0 +1,38 @@
+
+package models
+
+import org.squeryl.PrimitiveTypeMode._
+import org.squeryl._
+
+import org.squeryl.annotations.Column
+
+class AlbumUserLink(@Column("album_id") val albumID: Long,
+	    @Column("user_id") val userID: Long) extends LongKeyedEntity {
+
+  def this() = this(0L, 0L)
+
+  def user: Option[User] = User.findUserByUserID(userID)
+    
+  def album: Option[Album] = Album.findAlbumByAlbumID(albumID)
+}
+
+
+object AlbumUserLink extends Util[AlbumUserLink]{
+
+  def getAlbumsForUser(user: User) = {
+    val ids = from(Library.albumUserLinks)(aul => where(aul.userID === user.id) select(aul.albumID)).toList
+    
+    from(Library.albums)(a => where(a.id in ids) select(a)).toList
+
+  }
+
+  def getRestrictionsOnAlbum(album: Album) = {
+    from(Library.users)(u => where(u.id in 
+				   from(Library.albums)(a => where(a.id === album.id) 
+							select(a.userID)).toList) select (u)).toList
+  }
+}
+
+
+
+
