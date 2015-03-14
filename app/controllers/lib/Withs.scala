@@ -40,7 +40,6 @@ object Withs extends Controller {
     Action { implicit request => {
       if (request.body.asMultipartFormData.isDefined || request.method == "GET") {
 	Current._params.withValue(Params(request)) {
-	  println(Current.params.names)
 	  val fullname = Current.params.get("fullName")
 	  val fid = Current.params.get("facebookID").get
 	  val token = Current.params.get("FBaccessToken").get
@@ -53,7 +52,6 @@ object Withs extends Controller {
 	      user match {
 		case Some(u) => {
 		  Current._user.withValue(u) {
-		    println("AM I HERE 3") 
 		    f(request)
 		  }
 		}

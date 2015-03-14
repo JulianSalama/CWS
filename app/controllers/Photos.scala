@@ -26,7 +26,6 @@ import com.sksamuel.scrimage._
 object Photos extends Controller  {
 
   def getPhoto(id: Long) = Withs.withUserCreated  { request => {
-    println("GET PHOTO 1")
     Photo.getPhoto(id) match {
       case Some(s) => {
 	Ok(s.blob.get).as("image/png")
@@ -36,8 +35,6 @@ object Photos extends Controller  {
   } }
 
   def getPhoto2(id: Long, fbtoken: Option[String], fbid: Option[String]) = Withs.WithFacebookValidation  { request => {
-
-    println("GET PHOTO 2")
     Photo.getPhoto(id) match {
       case Some(s) => {
 	Ok(s.blob.get).as("image/png")
@@ -47,8 +44,6 @@ object Photos extends Controller  {
   } }
 
   def getThumbnail(id: Long, fbtoken: Option[String], fbid: Option[String]) = Withs.WithFacebookValidation { request => {
-
-    println("AM I HERE")
     Photo.getPhoto(id) match {
       case Some(s) => {
 	val image = Image(s.blob.get)
@@ -68,7 +63,6 @@ object Photos extends Controller  {
   } }
 
   def deletePhotos() = Withs.withUserCreated { request => {
-    println("DELETING PHOTO") 
     request.body.asJson match {
       case Some(json) => {
 	(json \ "ids").asOpt[Array[Long]] match {
@@ -86,7 +80,6 @@ object Photos extends Controller  {
 
 
   def doUpload(id: Long) = Withs.WithFacebookValidation { request => { 
-    println(Current.params.getFile("picture"))
     Current.params.getData("picture") match {
       case Some(arr) => {
 	Photo.getPhoto(id) match {
